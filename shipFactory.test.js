@@ -8,8 +8,9 @@
 // isSunk() function that calculates true/false based on ship's
 // length and number of hits 
 import * as ship from './shipFactory.js';
-const testBoat = ship.shipFactory(0);
+
 describe('hit tests', () => {
+  const testBoat = ship.shipFactory(3);
   test('does hit() work on new ship', () => {
     testBoat.hit();
     expect(testBoat.checkHits()).toBe(1);
@@ -18,6 +19,12 @@ describe('hit tests', () => {
     testBoat.hit();
     expect(testBoat.checkHits()).toBe(2);
   });
+  test('does ship sink', () => {
+    const bikiniboat = ship.shipFactory(2);
+    bikiniboat.hit();
+    bikiniboat.hit();
+    expect(bikiniboat.isSunk()).toBe(true);
+});
 });
 
 describe('create new ship object', () => {
@@ -32,4 +39,5 @@ describe('create new ship object', () => {
   test('is not sunk', () => {
     expect(lilboat.isSunk()).toBe(false);
   });
-})  
+});  
+

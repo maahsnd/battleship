@@ -9,6 +9,9 @@ export const shipFactory = (size) => {
     return hits;
   }
   const isSunk = () => {
+    if (hits >= length) {
+      sunk = true;
+    }
     return sunk;
   }
   
