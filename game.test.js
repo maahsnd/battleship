@@ -33,16 +33,16 @@ describe.only('player tests', () => {
     expect(player1.board.receiveAttack([2,2]).length).toBe(2); 
   });
   test('make random play', () => {
-    let play = cpu.makeRandomPlay();
+    let play = cpu.makeRandomCoord();
     expect(play[0]).toBeGreaterThanOrEqual(0);
     expect(play[0]).toBeLessThanOrEqual(10);
     expect(play[1]).toBeGreaterThanOrEqual(0);
     expect(play[1]).toBeLessThanOrEqual(10);
   });
-  test('no redundant attacks', () => {
+  test.only('no redundant attacks', () => {
     player1.makeAttack([0,0]);
-    expect(player1.makeAttack[0,0]).toBe(false);
-  })
+    expect(player1.makeAttack([0,0])).toBe(false);
+  });
 });
 
 describe('hit tests', () => {

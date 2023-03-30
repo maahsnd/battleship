@@ -60,10 +60,21 @@ const gameBoard = () => {
 
 const player = () => {
   const board = gameBoard();
-  const makeRandomPlay = () => {
+  let attacksMade = [];
+  const makeRandomCoord = () => {
     return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
+  };
+  const checkAttack = (coordinates) => {
+    if (attacksMade.some((coordSet) => (coordSet[0] === coordinates[0] &&
+        coordSet[1] === coordinates[1]))) {return false }
+    else { return true};
   }
-  return { board, makeRandomPlay };
+  const makeAttack = (coordinates) => {
+    if (!checkAttack(coordinates)) return false;
+    attacksMade.push(coordinates);
+    return true;
+  }
+  return { board, makeRandomCoord, makeAttack };
 };
 
 export { gameBoard, shipFactory, player }
