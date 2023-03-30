@@ -27,18 +27,22 @@ import { gameBoard, shipFactory, player } from './game.js';
 
 describe.only('player tests', () => {
   const player1 = player();
+  const cpu = player();
   test('attack enemy gameboard', () => {
     player1.board.placeShip(2,[[2,2],[2,3]]);
     expect(player1.board.receiveAttack([2,2]).length).toBe(2); 
   });
-  const cpu = player();
-    test('make random play', () => {
-      let play = cpu.makeRandomPlay();
-      expect(play[0]).toBeGreaterThanOrEqual(0);
-      expect(play[0]).toBeLessThanOrEqual(10);
-      expect(play[1]).toBeGreaterThanOrEqual(0);
-      expect(play[1]).toBeLessThanOrEqual(10);
-    })
+  test('make random play', () => {
+    let play = cpu.makeRandomPlay();
+    expect(play[0]).toBeGreaterThanOrEqual(0);
+    expect(play[0]).toBeLessThanOrEqual(10);
+    expect(play[1]).toBeGreaterThanOrEqual(0);
+    expect(play[1]).toBeLessThanOrEqual(10);
+  });
+  test('no redundant attacks', () => {
+    player1.makeAttack([0,0]);
+    expect(player1.makeAttack[0,0]).toBe(false);
+  })
 });
 
 describe('hit tests', () => {
