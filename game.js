@@ -28,8 +28,10 @@ const gameBoard = () => {
   const receiveAttack = (coordinates) => {
     for (let i = 0; i < shipStorage.length; i++) {
       let hitShip = compareCoordinates(shipStorage[i], coordinates);
+      console.log(hitShip)
       if (hitShip) return hitShip;
     }
+  return false;
   };
   // returns shipStorage[i].ship (the ship object) if found
   // else returns false
