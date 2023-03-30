@@ -8,7 +8,10 @@ describe.only('gameboard tests', () => {
   });
   test('receive unsuccesful attack', () => {
     expect(testGame.receiveAttack([3,3])).toBe(false);
-  })
+  });
+  test('track missed attack', () => {
+    expect(testGame.missedAttacks()[0]).toEqual([3,3]);
+  });
 });
 
 describe('hit tests', () => {
