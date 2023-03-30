@@ -16,6 +16,13 @@ describe.only('gameboard tests', () => {
     testGame.receiveAttack([2,2]);
     expect(testGame.missedAttacks[1]).toEqual([2,2]);
   });
+  test('have all ships sunk (no)', () => {
+    expect(testGame.fleetSunk()).toBe(false);
+  });
+  test('have all ships sunk (yes)', () => {
+    testGame.receiveAttack([0,1]);
+    expect(testGame.fleetSunk()).toBe(true);
+  })
 });
 
 describe('hit tests', () => {
