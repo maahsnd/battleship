@@ -1,11 +1,14 @@
 import { gameBoard, shipFactory } from './game.js';
 
 describe.only('gameboard tests', () => {
-  test('gameboard places ship at coordinates', () => {
-    const testGame = gameBoard();
-    testGame.placeShip(1,[0,0]);
-    expect(testGame.searchShipStorage([0,0]).length).toBe(1);
+  const testGame = gameBoard();
+  testGame.placeShip(2,[[0,0],[0,1]]);
+  test('receive succesful attack', () => {
+    expect(testGame.receiveAttack([0,0]).length).toBe(1);
   });
+  test('receive unsuccesful attack', () => {
+    expect(testGame.receiveAttack([3,3]).length).toBe(false);
+  })
 });
 
 describe('hit tests', () => {

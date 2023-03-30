@@ -25,7 +25,7 @@ const gameBoard = () => {
     let ship = shipFactory(shipSize);
     shipStorage.push({ ship, coordinateArr }); 
   };
-  const searchShipStorage = (coordinates) => {
+  const receiveAttack = (coordinates) => {
     for (let i = 0; i < shipStorage.length; i++) {
       let hitShip = compareCoordinates(shipStorage[i], coordinates);
       if (hitShip) return hitShip;
@@ -35,14 +35,14 @@ const gameBoard = () => {
   // else returns false
   const compareCoordinates = (container, coordinates) => {
     for (let i = 0; i < container.coordinateArr.length; i++) {
-      if (container.coordinateArr[0] === coordinates[0] &&
-          container.coordinateArr[1] === coordinates[1]){
+      if (container.coordinateArr[i][0] === coordinates[0] &&
+          container.coordinateArr[i][1] === coordinates[1]){
             return container.ship;
       };
     }
     return false;
   };
-  return { placeShip, searchShipStorage }
+  return { placeShip, receiveAttack }
 };
 
 export { gameBoard, shipFactory }
