@@ -12,6 +12,10 @@ describe.only('gameboard tests', () => {
   test('track missed attack', () => {
     expect(testGame.missedAttacks[0]).toEqual([3,3]);
   });
+  test('track multiple missed attacks', () => {
+    testGame.receiveAttack([2,2]);
+    expect(testGame.missedAttacks[1]).toEqual([2,2]);
+  });
 });
 
 describe('hit tests', () => {
