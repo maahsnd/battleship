@@ -1,16 +1,15 @@
-//shipFactory.tests.js
+import { gameBoard, shipFactory } from './game.js';
 
-//objects include length, number of hits and sunk/ not sunk
-//shipFactory(length)
-
-//includes:
-// hit() function that increments the number of hits on a ship
-// isSunk() function that calculates true/false based on ship's
-// length and number of hits 
-import * as ship from './shipFactory.js';
+describe.only('gameboard tests', () => {
+  test('gameboard places ship at coordinates', () => {
+    const testGame = gameBoard();
+    testGame.placeShip(1,[0,0]);
+    expect(testGame.searchShipStorage([0,0]).length).toBe(1);
+  });
+});
 
 describe('hit tests', () => {
-  const testBoat = ship.shipFactory(3);
+  const testBoat = shipFactory(3);
   test('does hit() work on new ship', () => {
     testBoat.hit();
     expect(testBoat.checkHits()).toBe(1);
@@ -28,7 +27,7 @@ describe('hit tests', () => {
 });
 
 describe('create new ship object', () => {
-  const lilboat = ship.shipFactory(2);
+  const lilboat = shipFactory(2);
   test('has length', () => {
     expect(lilboat.length).toBe(2);
   });
@@ -40,4 +39,3 @@ describe('create new ship object', () => {
     expect(lilboat.isSunk()).toBe(false);
   });
 });  
-
