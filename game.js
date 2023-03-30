@@ -23,7 +23,7 @@ const gameBoard = () => {
   let shipStorage =  [];
   let missedAttacks = [];
   
-  const placeShip = ( shipSize, coordinateArr) => {
+  const placeShip = (shipSize, coordinateArr) => {
     let ship = shipFactory(shipSize);
     shipStorage.push({ ship, coordinateArr }); 
   };
@@ -31,7 +31,6 @@ const gameBoard = () => {
   const receiveAttack = (coordinates) => {
     for (let i = 0; i < shipStorage.length; i++) {
       let hitShip = compareCoordinates(shipStorage[i], coordinates);
-      console.log(hitShip)
       if (hitShip) {
         hitShip.hit();
         return hitShip;
@@ -56,11 +55,12 @@ const gameBoard = () => {
     return (aShipFloats ? false : true);
   };
   
-  return { placeShip, receiveAttack, missedAttacks, fleetSunk }
+  return { placeShip, receiveAttack, missedAttacks, fleetSunk, shipStorage }
 };
 
 const player = () => {
-  
+  const board = gameBoard();
+  return { board };
 };
 
 export { gameBoard, shipFactory, player }

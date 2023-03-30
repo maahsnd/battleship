@@ -1,6 +1,6 @@
 import { gameBoard, shipFactory, player } from './game.js';
 
-describe('gameboard tests', () => {
+ describe('gameboard tests', () => {
   const testGame = gameBoard();
   testGame.placeShip(2,[[0,0],[0,1]]);
   test('receive succesful attack', () => {
@@ -23,16 +23,21 @@ describe('gameboard tests', () => {
     testGame.receiveAttack([0,1]);
     expect(testGame.fleetSunk()).toBe(true);
   });
-});
+}); 
 
-describe('player tests', () => {
+describe.only('player tests', () => {
   const player1 = player();
-  player1.setUp();
   test('attack enemy gameboard', () => {
-    player1.board.placeShip(2,[[2,2][2,3]]);
+    player1.board.placeShip(2,[[2,2],[2,3]]);
     expect(player1.board.receiveAttack([2,2]).length).toBe(2); 
-  })
-})
+  });
+  const cpu = player();
+    test('make random play', () => {
+      let play = cpu.board.makeRandomPlay();
+      expect(play[0]).toBeGreaterThanOrEqual(0);
+      expect(play[1]).toBeLessThanOrEqual(10);
+    })
+});
 
 describe('hit tests', () => {
   const testBoat = shipFactory(3);
@@ -64,4 +69,4 @@ describe('create new ship object', () => {
   test('is not sunk', () => {
     expect(lilboat.isSunk()).toBe(false);
   });
-});  
+});   
