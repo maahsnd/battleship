@@ -10,7 +10,7 @@ describe.only('gameboard tests', () => {
     expect(testGame.receiveAttack([3,3])).toBe(false);
   });
   test('track missed attack', () => {
-    expect(testGame.missedAttacks()[0]).toEqual([3,3]);
+    expect(testGame.missedAttacks[0]).toEqual([3,3]);
   });
 });
 
