@@ -33,8 +33,10 @@ describe.only('player tests', () => {
   });
   const cpu = player();
     test('make random play', () => {
-      let play = cpu.board.makeRandomPlay();
+      let play = cpu.makeRandomPlay();
       expect(play[0]).toBeGreaterThanOrEqual(0);
+      expect(play[0]).toBeLessThanOrEqual(10);
+      expect(play[1]).toBeGreaterThanOrEqual(0);
       expect(play[1]).toBeLessThanOrEqual(10);
     })
 });

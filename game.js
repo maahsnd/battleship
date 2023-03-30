@@ -60,7 +60,10 @@ const gameBoard = () => {
 
 const player = () => {
   const board = gameBoard();
-  return { board };
+  const makeRandomPlay = () => {
+    return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
+  }
+  return { board, makeRandomPlay };
 };
 
 export { gameBoard, shipFactory, player }
