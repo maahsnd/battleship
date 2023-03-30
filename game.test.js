@@ -22,7 +22,7 @@ describe.only('gameboard tests', () => {
   test('have all ships sunk (yes)', () => {
     testGame.receiveAttack([0,1]);
     expect(testGame.fleetSunk()).toBe(true);
-  })
+  });
 });
 
 describe('hit tests', () => {
