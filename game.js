@@ -59,4 +59,8 @@ const gameBoard = () => {
   return { placeShip, receiveAttack, missedAttacks, fleetSunk }
 };
 
-export { gameBoard, shipFactory }
+const player = () => {
+  
+};
+
+export { gameBoard, shipFactory, player }
