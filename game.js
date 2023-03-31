@@ -85,7 +85,6 @@ const main = () => {
   const player1 = player();
   const cpu = player();
   player1.board.placeShip(2, [[0,0],[0,1]]);
-  player1.board.placeShip(3, [[0,2],[0,3],[0,4]]);
   cpu.board.placeShip(2, [[4,0],[4,1]]);
   cpu.board.placeShip(3, [[5,0],[5,1],[5,2]]);
   return { player1, cpu }
