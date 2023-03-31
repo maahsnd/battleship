@@ -20,8 +20,15 @@ const renderBoard = () => {
     }
     hostDiv.appendChild(board);
   }
+  const renderShips = (player) => {
+    //work through player's ship storage
+    //render ships one cell/ set of coordinates at a time
+    //make copies of arrays and use like a queue
+    
+  }
+  
 return { createBoard }  
 }
 
-renderBoard().createBoard('playerBoard');
-renderBoard().createBoard('cpuBoard');
+
+export { renderShips }

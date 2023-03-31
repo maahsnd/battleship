@@ -1,11 +1,5 @@
 import { gameBoard, shipFactory, player, main } from './game.js';
 
-describe('main setup tests', () => {
-  test('create players', () => {
-    main.createPlayers
-  })
-})
-
  describe('gameboard tests', () => {
   const testGame = gameBoard();
   testGame.placeShip(2,[[0,0],[0,1]]);
