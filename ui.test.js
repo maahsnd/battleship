@@ -6,4 +6,8 @@ test('pass correct coordinates for player ships', () => {
   console.log(shipCoords)
   expect(shipCoords[0]).toEqual([0,0]);
   expect(shipCoords[1]).toEqual([0,1]);
+});
+
+test('select board cells based on coordinates', () => {
+  //desired output: [{row: 0, col: 1}, {row: 0, col: 1}]
 })
