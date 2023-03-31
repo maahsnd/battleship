@@ -1,4 +1,10 @@
-import { gameBoard, shipFactory, player } from './game.js';
+import { gameBoard, shipFactory, player, main } from './game.js';
+
+describe('main setup tests', () => {
+  test('create players', () => {
+    main.createPlayers
+  })
+})
 
  describe('gameboard tests', () => {
   const testGame = gameBoard();
@@ -25,7 +31,7 @@ import { gameBoard, shipFactory, player } from './game.js';
   });
 }); 
 
-describe.only('player tests', () => {
+describe('player tests', () => {
   const player1 = player();
   const cpu = player();
   test('attack enemy gameboard', () => {
@@ -76,3 +82,4 @@ describe('create new ship object', () => {
     expect(lilboat.isSunk()).toBe(false);
   });
 });   
+

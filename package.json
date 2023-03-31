@@ -2,7 +2,12 @@
   "name": "battleship",
   "version": "1.0.0",
   "description": "https://www.theodinproject.com/lessons/node-path-javascript-battleship",
-  "main": "main.js",
+  "main": "game.js",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "./game.test.js"
+    ]
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "jest": "^29.5.0"
