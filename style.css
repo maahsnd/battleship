@@ -7,3 +7,11 @@
 .row {
     display: flex;
 }
+
+.boardWrap {
+    display: flex;
+}
+
+.board {
+    margin: 20px;
+}

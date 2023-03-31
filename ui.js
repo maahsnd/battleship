@@ -22,3 +22,6 @@ const renderBoard = () => {
   }
 return { createBoard }  
 }
+
+renderBoard().createBoard('playerBoard');
+renderBoard().createBoard('cpuBoard');
