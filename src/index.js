@@ -3,7 +3,10 @@ import { gameBoard, shipFactory, player } from './game.js';
 import './style.css';
 
 renderBoard().createBoard('playerBoard'); 
-renderBoard().renderShips('playerBoard', [1, 10]);
+const player1 = player();
+player1.board.placeShip(3, [[1, 10], [2, 10], [3, 10]]);
+player1.board.placeShip(3, [[1, 5], [2, 5], [3, 5]]);
+renderBoard().renderShips('playerBoard', player1);
 
 
 

@@ -33,18 +33,26 @@ const renderBoard = () => {
     }
     return coordsMaster;
   };
-  const renderShipCoodinator = () => {
-    
+  const renderShips = (playerIdStr, player) => {
+    let array = getAllShipCoords(player);
+    renderShipCoodinator(playerIdStr, array);
+  }
+  const renderShipCoodinator = (playerIdStr, coordArr) => {
+    let allShips = coordArr.ships;
+    while (allShips.length) {
+      console.log('a')
+      renderShipHelper(playerIdStr, allShips.pop());
+    }
   }
   ///NOTE: IN DOM, CELL COORDINATES ARE: TOPLEFT [1,1], 
   /// TOPRIGHT [1,10], BOTTOMLEFT [10,1], BOTTOMRIGHT [10,10]
-  const renderShips = (playerIdStr, coords) => {
+  const renderShipHelper = (playerIdStr, coords) => {
     const idStr = `#${playerIdStr}>div:nth-of-type(${coords[0]})>div:nth-of-type(${coords[1]})`
     let cell = document.querySelector(idStr);
     cell.classList.add('ship');
   }
 
-  return { createBoard, getAllShipCoords, renderShips };
+  return { createBoard, renderShips };
 };
 
 export default renderBoard;

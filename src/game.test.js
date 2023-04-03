@@ -2,9 +2,9 @@ import { gameBoard, shipFactory, player, main } from './game.js';
 
  describe('gameboard tests', () => {
   const testGame = gameBoard();
-  testGame.placeShip(2,[[0,0],[0,1]]);
+  testGame.placeShip(2,[[1,1],[2,1]]);
   test('receive succesful attack', () => {
-    expect(testGame.receiveAttack([0,0]).length).toBe(2);
+    expect(testGame.receiveAttack([1,1]).length).toBe(2);
   });
   test('receive unsuccesful attack', () => {
     expect(testGame.receiveAttack([3,3])).toBe(false);
@@ -20,7 +20,7 @@ import { gameBoard, shipFactory, player, main } from './game.js';
     expect(testGame.fleetSunk()).toBe(false);
   });
   test('have all ships sunk (yes)', () => {
-    testGame.receiveAttack([0,1]);
+    testGame.receiveAttack([2,1]);
     expect(testGame.fleetSunk()).toBe(true);
   });
 }); 
@@ -40,8 +40,8 @@ describe('player tests', () => {
     expect(play[1]).toBeLessThanOrEqual(10);
   });
   test.only('no redundant attacks', () => {
-    player1.makeAttack([0,0]);
-    expect(player1.makeAttack([0,0])).toBe(false);
+    player1.makeAttack([2,1]);
+    expect(player1.makeAttack([2,1])).toBe(false);
   });
 });
 
