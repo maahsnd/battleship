@@ -1,4 +1,4 @@
-import { gameBoard, shipFactory, player, main } from './game.js';
+import { gameBoard, shipFactory, player } from './game.js';
 
  describe('gameboard tests', () => {
   const testGame = gameBoard();
