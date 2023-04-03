@@ -33,12 +33,14 @@ const renderBoard = () => {
     }
     return coordsMaster;
   };
+  const renderShipCoodinator = () => {
+    
+  }
+  ///NOTE: IN DOM, CELL COORDINATES ARE: TOPLEFT [1,1], 
+  /// TOPRIGHT [1,10], BOTTOMLEFT [10,1], BOTTOMRIGHT [10,10]
   const renderShips = (playerIdStr, coords) => {
-    console.log(playerIdStr, coords[0], coords[1]);
     const idStr = `#${playerIdStr}>div:nth-of-type(${coords[0]})>div:nth-of-type(${coords[1]})`
-    console.log(idStr);
     let cell = document.querySelector(idStr);
-    console.log(cell)
     cell.classList.add('ship');
   }
 
