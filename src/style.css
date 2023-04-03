@@ -16,7 +16,6 @@
     margin: 20px;
 }
 
-/* how to select individual cells */
-#playerBoard>div:nth-of-type(1)>div:nth-of-type(1) {
+.ship {
     background-color: aqua;
 }

@@ -12,15 +12,13 @@ const renderBoard = () => {
     }
     return row;
   };
-  const createBoard = (hostID) => {
-    const hostDiv = document.getElementById(hostID);
-    const board = document.createElement('div');
+  const createBoard = (boardID) => {
+    const board = document.getElementById(boardID);
     for (let i = 9; i >= 0; i--) {
       board.appendChild(createRow());
     }
-    hostDiv.appendChild(board);
   };
-  const renderShips = (player) => {
+  const getAllShipCoords = (player) => {
     // work through player's ship storage
     // render ships one cell/ set of coordinates at a time
     // make copies of arrays and use like a queue
@@ -35,8 +33,16 @@ const renderBoard = () => {
     }
     return coordsMaster;
   };
+  const renderShips = (playerIdStr, coords) => {
+    console.log(playerIdStr, coords[0], coords[1]);
+    const idStr = `#${playerIdStr}>div:nth-of-type(${coords[0]})>div:nth-of-type(${coords[1]})`
+    console.log(idStr);
+    let cell = document.querySelector(idStr);
+    console.log(cell)
+    cell.classList.add('ship');
+  }
 
-  return { createBoard, renderShips };
+  return { createBoard, getAllShipCoords, renderShips };
 };
 
 export default renderBoard;
