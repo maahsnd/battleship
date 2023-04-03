@@ -1,0 +1,22 @@
+.cell {
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+}
+
+.row {
+    display: flex;
+}
+
+.boardWrap {
+    display: flex;
+}
+
+.board {
+    margin: 20px;
+}
+
+/* how to select individual cells */
+#playerBoard>div:nth-of-type(1)>div:nth-of-type(1) {
+    background-color: aqua;
+}
