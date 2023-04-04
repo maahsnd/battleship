@@ -1,21 +1,25 @@
 const renderBoard = () => {
-  const createCell = () => {
+  const createCell = (rowNum, colNum) => {
     const cell = document.createElement('div');
     cell.classList.add('cell');
+    let coords = [rowNum,colNum];
+    const attr = document.createAttribute("coords")
+    attr.value = coords;
+    cell.setAttributeNode(attr);
     return cell;
   };
-  const createRow = () => {
+  const createRow = (colNum) => {
     const row = document.createElement('div');
     row.classList.add('row');
-    for (let i = 9; i >= 0; i--) {
-      row.appendChild(createCell());
+    for (let j = 1; j <= 10; j++) {
+      row.appendChild(createCell(j, colNum));
     }
     return row;
   };
   const createBoard = (boardID) => {
     const board = document.getElementById(boardID);
-    for (let i = 9; i >= 0; i--) {
-      board.appendChild(createRow());
+    for (let i = 1; i <= 10; i++) {
+      board.appendChild(createRow(i));
     }
   };
   const getAllShipCoords = (player) => {
@@ -40,7 +44,6 @@ const renderBoard = () => {
   const renderShipCoodinator = (playerIdStr, coordArr) => {
     let allShips = coordArr.ships;
     while (allShips.length) {
-      console.log('a')
       renderShipHelper(playerIdStr, allShips.pop());
     }
   }
@@ -49,10 +52,33 @@ const renderBoard = () => {
   const renderShipHelper = (playerIdStr, coords) => {
     const idStr = `#${playerIdStr}>div:nth-of-type(${coords[0]})>div:nth-of-type(${coords[1]})`
     let cell = document.querySelector(idStr);
+    console.log(cell);
+    console.log(idStr)
     cell.classList.add('ship');
   }
 
-  return { createBoard, renderShips };
+  const addAttackListeners = () => {
+    let cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => {
+      cell.addEventListener("click", (e) => {
+        let coords = getCoordFromClick(e)
+        console.log(coords);
+        /* const playerStr = e.parentNode.parentNode.idStr;
+        handleAttack(coords, playerStr); */
+      })
+    })
+  }
+  const getCoordFromClick = (cell) => {
+    let str = cell.target.getAttribute("coords");
+    let arr = str.split(',')
+    return arr;
+  }
+ /*  const handleAttack = (coords, playerStr) => {
+    (playerStr === 'playerBoard') ? (player1.board.receiveAttack(coords)) :
+      (cpu.board.receiveAttack(coords));
+  } */
+
+  return { createBoard, renderShips, addAttackListeners };
 };
 
 export default renderBoard;
