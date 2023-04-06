@@ -26,11 +26,12 @@ const renderBoard = () => {
     // work through player's ship storage
     // render ships one cell/ set of coordinates at a time
     // make copies of arrays and use like a queue
-    const { shipStorage } = player.board;
+    let copyShipStorage = player.board.shipStorage;
+    console.log(player)
     let shipCoords;
     const coordsMaster = { ships: [] };
-    while (shipStorage.length) {
-      shipCoords = shipStorage.pop().coordinateArr;
+    while (copyShipStorage.length) {
+      shipCoords = copyShipStorage.pop().coordinateArr;
       shipCoords.forEach((coord) => {
         coordsMaster.ships.push(coord);
       });
@@ -54,6 +55,11 @@ const renderBoard = () => {
     let cell = document.querySelector(idStr);
     cell.classList.add('ship');
   }
+  const serveAttack = async () => {
+    while (!localStorage.getItem("attackCoords")) {}
+    let coords = localStorage.getItem("attackCoords");
+    return JSON.parse(coords);
+  }
 
   const addAttackListeners = () => {
     let cells = document.querySelectorAll('.cell');
@@ -61,6 +67,8 @@ const renderBoard = () => {
       cell.addEventListener("click", (e) => {
         let coords = getCoordFromClick(e)
         console.log(coords);
+        localStorage.setItem("attackCoords",
+          JSON.stringify(coords));
       })
     })
   }
@@ -69,7 +77,7 @@ const renderBoard = () => {
     let arr = str.split(',')
     return arr;
   }
-  return { createBoard, renderShips, addAttackListeners };
+  return { serveAttack, createBoard, renderShips, addAttackListeners, getAllShipCoords };
 };
 
 export default renderBoard;

@@ -1,7 +1,7 @@
 import renderBoard from './ui.js';
 import { main, gameBoard, shipFactory, player } from './game.js';
 
-test('pass correct coordinates for player ships', () => {
+test.only('pass correct coordinates for player ships', () => {
   const player1 = player();
   player1.board.placeShip(2, [[0, 0], [0, 1]]);
   let shipCoords = renderBoard().getAllShipCoords(player1).ships;
@@ -10,7 +10,7 @@ test('pass correct coordinates for player ships', () => {
   expect(shipCoords[1]).toEqual([0,1]);
 });
 
-test.only('convert ship coords to rows and nums', () => {
+test('convert ship coords to rows and nums', () => {
   //input: ship coords [[0,0][0,1]]
   //desired output: [{row: 0, col: 1}, {row: 0, col: 1}]
   expect()
