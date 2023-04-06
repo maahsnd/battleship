@@ -52,8 +52,6 @@ const renderBoard = () => {
   const renderShipHelper = (playerIdStr, coords) => {
     const idStr = `#${playerIdStr}>div:nth-of-type(${coords[0]})>div:nth-of-type(${coords[1]})`
     let cell = document.querySelector(idStr);
-    console.log(cell);
-    console.log(idStr)
     cell.classList.add('ship');
   }
 
