@@ -4,10 +4,10 @@ import './style.css';
 
 renderBoard().createBoard('playerBoard'); 
 renderBoard().addAttackListeners();
-/* const player1 = player();
+const player1 = player();
 player1.board.placeShip(3, [[1, 10], [2, 10], [3, 10]]);
 player1.board.placeShip(3, [[1, 5], [2, 5], [3, 5]]);
-renderBoard().renderShips('playerBoard', player1); */
+renderBoard().renderShips('playerBoard', player1); 
 
 
 

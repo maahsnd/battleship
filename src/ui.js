@@ -63,8 +63,6 @@ const renderBoard = () => {
       cell.addEventListener("click", (e) => {
         let coords = getCoordFromClick(e)
         console.log(coords);
-        /* const playerStr = e.parentNode.parentNode.idStr;
-        handleAttack(coords, playerStr); */
       })
     })
   }
@@ -73,11 +71,6 @@ const renderBoard = () => {
     let arr = str.split(',')
     return arr;
   }
- /*  const handleAttack = (coords, playerStr) => {
-    (playerStr === 'playerBoard') ? (player1.board.receiveAttack(coords)) :
-      (cpu.board.receiveAttack(coords));
-  } */
-
   return { createBoard, renderShips, addAttackListeners };
 };
 
