@@ -1,3 +1,4 @@
+import playGame from './index.js';
 const renderBoard = () => {
   const createCell = (rowNum, colNum) => {
     const cell = document.createElement('div');
@@ -53,19 +54,7 @@ const renderBoard = () => {
     cell.classList.add('ship');
   }
   const serveAttack = () => {
-    while (!checkStorage()) {}
-    let coords = localStorage.getItem("attackCoords");
-    console.log(coords)
-    return JSON.parse(coords);
-  }
-
-  const checkStorage = () => {
-    let x = null;
-    setTimeout(function () {
-      x = localStorage.getItem("attackCoords")
-    }, 250);
-    console.log(x)
-    return x;
+    playGame().round();
   }
 
   const addAttackListeners = () => {
@@ -76,6 +65,7 @@ const renderBoard = () => {
         console.log(coords);
         localStorage.setItem("attackCoords",
           JSON.stringify(coords));
+        serveAttack()
       })
     })
   }
@@ -84,7 +74,7 @@ const renderBoard = () => {
     let arr = str.split(',')
     return arr;
   }
-  return { serveAttack, createBoard, renderShips, addAttackListeners, getAllShipCoords };
+  return { createBoard, renderShips, addAttackListeners, getAllShipCoords };
 };
 
 export default renderBoard;

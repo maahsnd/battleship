@@ -63,6 +63,10 @@ const player = () => {
     return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
   };
   const checkAttack = (coordinates) => {
+    if (coordinates.length === 0) return true;
+    console.log(coordinates)
+    console.log(attacksMade)
+    ///ERROR OCCURING HERE
     if (
       attacksMade.some(
         (coordSet) =>
@@ -75,6 +79,7 @@ const player = () => {
     }
   };
   const makeAttack = (coordinates) => {
+    console.log(coordinates)
     if (!checkAttack(coordinates)) return false;
     attacksMade.push(coordinates);
     return true;
