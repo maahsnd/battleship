@@ -41,9 +41,8 @@ const renderBoard = () => {
     renderShipCoodinator(playerIdStr, array);
   }
   const renderShipCoodinator = (playerIdStr, coordArr) => {
-    let allShips = coordArr.ships;
-    while (allShips.length) {
-      renderShipHelper(playerIdStr, allShips.pop());
+    while (coordArr.length) {
+      renderShipHelper(playerIdStr, coordArr.pop());
     }
   }
   ///NOTE: IN DOM, CELL COORDINATES ARE: TOPLEFT [1,1], 

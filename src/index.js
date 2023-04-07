@@ -10,9 +10,9 @@ let player1 = player();
 let cpu = player();
 player1.board.placeShip(3, [[1, 10], [2, 10], [3, 10]]);
 cpu.board.placeShip(3, [[1, 5], [2, 5], [3, 5]]);
-console.log(cpu.board.shipStorage)
 renderBoard().renderShips('playerBoard', player1);
 renderBoard().renderShips('cpuBoard', cpu);    
+console.log(cpu.board.shipStorage)
     
 /*     while ((!player1.board.fleetSunk()) && 
         (!cpu.board.fleetSunk())) {
