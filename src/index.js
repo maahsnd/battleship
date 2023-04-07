@@ -17,14 +17,14 @@ const playGame = () => {
             (!cpu.board.fleetSunk())) {
             let attack = JSON.parse(
                 localStorage.getItem("attackCoords"));
-            console.log(attack)
+            console.count('index')
             player1.makeAttack(attack);
             cpu.board.receiveAttack(attack);
             localStorage.removeItem("attackCoords");
         }
         console.log('gameover')
     };
-    return { round}
+    return { round }
   }
 
 const test = playGame();

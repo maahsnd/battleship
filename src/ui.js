@@ -58,11 +58,11 @@ const renderBoard = () => {
   }
 
   const addAttackListeners = () => {
+    console.count('listener')
     let cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
       cell.addEventListener("click", (e) => {
         let coords = getCoordFromClick(e)
-        console.log(coords);
         localStorage.setItem("attackCoords",
           JSON.stringify(coords));
         serveAttack()
