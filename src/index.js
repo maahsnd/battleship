@@ -2,7 +2,7 @@ import renderBoard from './ui.js';
 import { player } from './game.js';
 import './style.css';
 
-/*     function playGame() {    */
+function playGame() {    
 renderBoard().createBoard('playerBoard');
 renderBoard().createBoard('cpuBoard');
 renderBoard().addAttackListeners();
@@ -14,18 +14,17 @@ renderBoard().renderShips('playerBoard', player1);
 renderBoard().renderShips('cpuBoard', cpu);    
 console.log(cpu.board.shipStorage)
     
-/*     while ((!player1.board.fleetSunk()) && 
-        (!cpu.board.fleetSunk())) {
-        let attack = renderBoard().serveAttack();
-        localStorage.removeItem("attackCoords");
-        player1.makeAttack(attack);
-        cpu.board.receiveAttack(attack);
-        console.log(cpu)
-    }
-    console.log(player1.board)
-    console.log('gameover')  */ 
-/*   }
+while ((!player1.board.fleetSunk()) && 
+(!cpu.board.fleetSunk())) {
+    let attack = renderBoard().serveAttack();
+    console.log("should not appear without click")
+    localStorage.removeItem("attackCoords");
+    player1.makeAttack(attack);
+    cpu.board.receiveAttack(attack);
+}
+console.log(player1.board)
+console.log('gameover') 
+}
 
 playGame();
 
-  */

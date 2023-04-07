@@ -52,23 +52,37 @@ const renderBoard = () => {
     let cell = document.querySelector(idStr);
     cell.classList.add('ship');
   }
-  const serveAttack = async () => {
-    while (!localStorage.getItem("attackCoords")) {}
+  //while loop overwhelms
+/*   const serveAttack = async () => {
+    while (!localStorage.getItem("attackCoords")) {
+    }
     let coords = localStorage.getItem("attackCoords");
     return JSON.parse(coords);
-  }
+  } */
 
   const addAttackListeners = () => {
+    let promisesArr = []
     let cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
+      promisesArr.push(makeClickPromises(cell))
+    })
+    Promise.race(promisesArr).then((value) => {
+      console.log(value);
+      return value;
+    })
+  }
+
+  const makeClickPromises = (cell) => {
+    return new Promise(function (resolve) {
       cell.addEventListener("click", (e) => {
-        let coords = getCoordFromClick(e)
-        console.log(coords);
-        localStorage.setItem("attackCoords",
-          JSON.stringify(coords));
+      let coords = getCoordFromClick(e)
+      localStorage.setItem("attackCoords",
+        JSON.stringify(coords));
+      resolve();
       })
     })
   }
+
   const getCoordFromClick = (cell) => {
     let str = cell.target.getAttribute("coords");
     let arr = str.split(',')
