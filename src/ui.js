@@ -52,10 +52,20 @@ const renderBoard = () => {
     let cell = document.querySelector(idStr);
     cell.classList.add('ship');
   }
-  const serveAttack = async () => {
-    while (!localStorage.getItem("attackCoords")) {}
+  const serveAttack = () => {
+    while (!checkStorage()) {}
     let coords = localStorage.getItem("attackCoords");
+    console.log(coords)
     return JSON.parse(coords);
+  }
+
+  const checkStorage = () => {
+    let x = null;
+    setTimeout(function () {
+      x = localStorage.getItem("attackCoords")
+    }, 250);
+    console.log(x)
+    return x;
   }
 
   const addAttackListeners = () => {
