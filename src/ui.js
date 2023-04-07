@@ -26,16 +26,14 @@ const renderBoard = () => {
     // work through player's ship storage
     // render ships one cell/ set of coordinates at a time
     // make copies of arrays and use like a queue
-    let copyShipStorage = player.board.shipStorage;
-    console.log(player)
-    let shipCoords;
+    let shipCoords = [];
     const coordsMaster = { ships: [] };
-    while (copyShipStorage.length) {
-      shipCoords = copyShipStorage.pop().coordinateArr;
-      shipCoords.forEach((coord) => {
-        coordsMaster.ships.push(coord);
-      });
+    for (let i = 0; i < player.board.shipStorage.length; i++){
+      shipCoords.push(player.board.shipStorage[i].coordinateArr)
     }
+    shipCoords.forEach((coord) => {
+      coordsMaster.ships.push(coord);
+    });
     return coordsMaster;
   };
   const renderShips = (playerIdStr, player) => {
