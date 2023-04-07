@@ -66,10 +66,9 @@ const renderBoard = () => {
     cells.forEach((cell) => {
       promisesArr.push(makeClickPromises(cell))
     })
-    Promise.race(promisesArr).then((value) => {
-      console.log(value);
-      return value;
-    })
+    let result = Promise.race(promisesArr).then(
+      (value) => { return value });
+    return result;
   }
 
   const makeClickPromises = (cell) => {
@@ -88,7 +87,7 @@ const renderBoard = () => {
     let arr = str.split(',')
     return arr;
   }
-  return { serveAttack, createBoard, renderShips, addAttackListeners, getAllShipCoords };
+  return { createBoard, renderShips, addAttackListeners, getAllShipCoords };
 };
 
 export default renderBoard;

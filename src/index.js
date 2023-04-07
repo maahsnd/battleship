@@ -5,7 +5,6 @@ import './style.css';
 function playGame() {    
 renderBoard().createBoard('playerBoard');
 renderBoard().createBoard('cpuBoard');
-renderBoard().addAttackListeners();
 let player1 = player();
 let cpu = player();
 player1.board.placeShip(3, [[1, 10], [2, 10], [3, 10]]);
@@ -16,7 +15,8 @@ console.log(cpu.board.shipStorage)
     
 while ((!player1.board.fleetSunk()) && 
 (!cpu.board.fleetSunk())) {
-    let attack = renderBoard().serveAttack();
+    let attack = renderBoard().addAttackListeners();
+    console.log(attack)
     console.log("should not appear without click")
     localStorage.removeItem("attackCoords");
     player1.makeAttack(attack);
