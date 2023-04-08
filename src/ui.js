@@ -60,34 +60,44 @@ const renderBoard = () => {
     return JSON.parse(coords);
   } */
 
+  let next = false;
+  
   const addAttackListeners = () => {
-    let promisesArr = []
     let cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
-      promisesArr.push(makeClickPromises(cell))
-    })
-    let result = Promise.race(promisesArr).then(
-      (value) => { return value });
-    return result;
-  }
-
-  const makeClickPromises = (cell) => {
-    return new Promise(function (resolve) {
       cell.addEventListener("click", (e) => {
-      let coords = getCoordFromClick(e)
-      localStorage.setItem("attackCoords",
-        JSON.stringify(coords));
-      resolve();
+        let coords = getCoordFromClick(e)
+        console.log(coords);
+        localStorage.setItem("attackCoords",
+          JSON.stringify(coords));
+        next = true;
       })
     })
   }
+
+  function wait() {
+    while (next === false) {
+      setTimeout(250);
+    }
+    return true
+  }
+
+  async function myFunc() {
+    await waitUserInput(); // wait until user clicks
+    return JSON.parse(localStorage.getItem("attackCoords"));
+}
+  async function waitUserInput() {
+    while (next === false) await timeout(250); // pauses script
+    next = false; // reset var
+}
+  const timeout = (ms) => setTimeout(function() {}, ms);
 
   const getCoordFromClick = (cell) => {
     let str = cell.target.getAttribute("coords");
     let arr = str.split(',')
     return arr;
   }
-  return { createBoard, renderShips, addAttackListeners, getAllShipCoords };
+  return { createBoard, renderShips, addAttackListeners, getAllShipCoords, myFunc, wait };
 };
 
 export default renderBoard;
