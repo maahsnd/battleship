@@ -24,7 +24,7 @@ const playGame = () => {
             cpu.board.receiveAttack(attack);
             localStorage.removeItem("attackCoords");
         }
-        console.log('gameover')
+        console.log('gameovers')
     };
     return { round }
   }
