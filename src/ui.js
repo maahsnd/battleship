@@ -77,19 +77,19 @@ const renderBoard = () => {
 
   function wait() {
     while (next === false) {
-      setTimeout(250);
+      setTimeout(function () { }, 250);
     }
     return true
   }
 
-  async function myFunc() {
+/*   async function myFunc() {
     await waitUserInput(); // wait until user clicks
     return JSON.parse(localStorage.getItem("attackCoords"));
 }
   async function waitUserInput() {
     while (next === false) await timeout(250); // pauses script
     next = false; // reset var
-}
+} */
   const timeout = (ms) => setTimeout(function() {}, ms);
 
   const getCoordFromClick = (cell) => {
@@ -97,7 +97,7 @@ const renderBoard = () => {
     let arr = str.split(',')
     return arr;
   }
-  return { createBoard, renderShips, addAttackListeners, getAllShipCoords, myFunc, wait };
+  return { createBoard, renderShips, addAttackListeners, getAllShipCoords, wait };
 };
 
 export default renderBoard;

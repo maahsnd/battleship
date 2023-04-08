@@ -15,8 +15,9 @@ renderBoard().addAttackListeners();
     
 /* while ((!player1.board.fleetSunk()) && 
 (!cpu.board.fleetSunk())) { */
-    const attack = renderBoard().myFunc();
+    /* const attack = renderBoard().myFunc(); */
     renderBoard().wait();
+    let attack = localStorage.getItem("attackCoords")
     console.log(attack);
     console.log("should not appear without click")
     localStorage.removeItem("attackCoords");
