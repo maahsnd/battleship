@@ -4,6 +4,7 @@ const shipFactory = (size) => {
   const length = size;
   const hit = () => {
     hits += 1;
+    isSunk()
     return hits;
   };
   const checkHits = () => {
@@ -12,6 +13,7 @@ const shipFactory = (size) => {
   const isSunk = () => {
     if (hits >= length) {
       sunk = true;
+      console.log('sunk')
     }
     return sunk;
   };
@@ -59,7 +61,6 @@ const gameBoard = () => {
 const player = () => {
   const board = gameBoard();
   let attacksMade = [];
-  const getShipPlacement = (size) => {};
   const makeRandomCoord = () => {
     return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
   };
@@ -95,9 +96,18 @@ const player = () => {
     board,
     makeRandomAttack,
     makeAttack,
-    makeRandomCoord,
-    getShipPlacement
+    makeRandomCoord
   };
 };
 
-export { gameBoard, shipFactory, player };
+const checkGameOver = (player1, cpu) => {
+  let p1Sunk = player1.board.fleetSunk();
+  let cpuSunk = cpu.board.fleetSunk();
+  if (p1Sunk || cpuSunk) {
+    alert('gameover');
+    return true
+  }
+  return false;
+};
+
+export { gameBoard, shipFactory, player, checkGameOver };

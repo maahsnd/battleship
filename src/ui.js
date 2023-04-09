@@ -1,5 +1,12 @@
 import round from './index.js';
 const renderBoard = () => {
+  const renderTurn = (turn) => {
+    let playerStr = (turn % 2 === 0) ? ('player1') : ('cpu');
+    console.log(playerStr);
+    let turnDiv = document.querySelector('.turn');
+    turnDiv.innerHTML = `<b>Turn: ${playerStr}<b>`;
+    return turnDiv;
+  }
   const createCell = (rowNum, colNum) => {
     const cell = document.createElement('div');
     cell.classList.add('cell');
@@ -61,6 +68,7 @@ const renderBoard = () => {
     let cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
       cell.addEventListener("click", (e) => {
+        console.log('call')
         let coords = getCoordFromClick(e)
         localStorage.setItem("attackCoords",
           JSON.stringify(coords));
@@ -73,7 +81,7 @@ const renderBoard = () => {
     let arr = str.split(',')
     return arr;
   }
-  return { createBoard, renderShips, addAttackListeners, getAllShipCoords };
+  return { createBoard, renderShips, addAttackListeners, getAllShipCoords, renderTurn };
 };
 
 export default renderBoard;
