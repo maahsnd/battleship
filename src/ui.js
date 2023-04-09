@@ -1,4 +1,4 @@
-import playGame from './index.js';
+import round from './index.js';
 const renderBoard = () => {
   const createCell = (rowNum, colNum) => {
     const cell = document.createElement('div');
@@ -49,20 +49,18 @@ const renderBoard = () => {
   ///NOTE: IN DOM, CELL COORDINATES ARE: TOPLEFT [1,1], 
   /// TOPRIGHT [1,10], BOTTOMLEFT [10,1], BOTTOMRIGHT [10,10]
   const renderShipHelper = (playerIdStr, coords) => {
-    const idStr = `#${playerIdStr}>div:nth-of-type(${coords[0]})>div:nth-of-type(${coords[1]})`
+    const idStr = `#${playerIdStr}>div:nth-of-type(${coords[1]})>div:nth-of-type(${coords[0]})`
     let cell = document.querySelector(idStr);
     cell.classList.add('ship');
   }
   const serveAttack = () => {
-    playGame().round();
+    round();
   }
 
   const addAttackListeners = () => {
-    console.count('addlistener')
     let cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
       cell.addEventListener("click", (e) => {
-        console.count('firelistener')
         let coords = getCoordFromClick(e)
         localStorage.setItem("attackCoords",
           JSON.stringify(coords));

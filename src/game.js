@@ -4,6 +4,7 @@ const shipFactory = (size) => {
   const length = size;
   const hit = () => {
     hits += 1;
+    return hits;
   };
   const checkHits = () => {
     return hits;
@@ -14,7 +15,7 @@ const shipFactory = (size) => {
     }
     return sunk;
   };
-  return { hit, checkHits, length, isSunk };
+  return { hit, checkHits, length, isSunk, hits };
 };
 
 const gameBoard = () => {
@@ -29,7 +30,7 @@ const gameBoard = () => {
     for (let i = 0; i < shipStorage.length; i++) {
       let hitShip = compareCoordinates(shipStorage[i], coordinates);
       if (hitShip) {
-        hitShip.hit();
+         hitShip.hits =  hitShip.hit()
         return hitShip;
       }
     }
@@ -39,8 +40,8 @@ const gameBoard = () => {
   const compareCoordinates = (container, coordinates) => {
     for (let i = 0; i < container.coordinateArr.length; i++) {
       if (
-        container.coordinateArr[i][0] === coordinates[0] &&
-        container.coordinateArr[i][1] === coordinates[1]
+        container.coordinateArr[i][0] == coordinates[0] &&
+        container.coordinateArr[i][1] == coordinates[1]
       ) {
         return container.ship;
       }
@@ -63,8 +64,9 @@ const player = () => {
     return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
   };
   const checkAttack = (coordinates) => {
-    console.count('check')
-    if (coordinates.length === 0) return true;
+    if (coordinates.length === 0) {
+      return true;
+    }
     if (
       attacksMade.some(
         (coordSet) =>
@@ -77,7 +79,9 @@ const player = () => {
     }
   };
   const makeAttack = (coordinates) => {
-    if (!checkAttack(coordinates)) return false;
+    if (!checkAttack(coordinates)) {
+      return false;
+    }
     attacksMade.push(coordinates.slice());
     return true;
   };
