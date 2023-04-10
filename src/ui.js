@@ -1,8 +1,9 @@
 import round from './index.js';
 const renderBoard = () => {
   const renderTurn = (turn) => {
+    console.count('render turn')
+    console.log(turn)
     let playerStr = (turn % 2 === 0) ? ('player1') : ('cpu');
-    console.log(playerStr);
     let turnDiv = document.querySelector('.turn');
     turnDiv.innerHTML = `<b>Turn: ${playerStr}<b>`;
     return turnDiv;

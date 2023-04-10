@@ -62,7 +62,7 @@ const player = () => {
   const board = gameBoard();
   let attacksMade = [];
   const makeRandomCoord = () => {
-    return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
+    return [Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 10) + 1];
   };
   const checkAttack = (coordinates) => {
     if (coordinates.length === 0) {
@@ -88,9 +88,13 @@ const player = () => {
   };
   const makeRandomAttack = () => {
     let attack = false;
+    let coords;
     while (!attack) {
-      attack = makeAttack(makeRandomCoord);
+      coords = makeRandomCoord();
+      attack = makeAttack(coords);
     }
+      localStorage.setItem("attackCoords",
+      JSON.stringify(coords))
   };
   return {
     board,

@@ -20,14 +20,21 @@ const round = () => {
         player1.makeAttack(attack);
         cpu.board.receiveAttack(attack);
     }
-    if (turn % 2 === 1) {
-        cpu.makeAttack(attack);
-        player1.board.receiveAttack(attack);
-    } 
-    turn += 1;
     localStorage.removeItem("attackCoords");
-    renderBoard().renderTurn(turn)
     if (checkGameOver(player1, cpu)) return;
+    turn += 1;
+    renderBoard().renderTurn(turn)
+    setTimeout(() => {
+        if (turn % 2 === 1) {
+            cpu.makeRandomAttack();
+            player1.board.receiveAttack(JSON.parse(
+                localStorage.getItem("attackCoords")));
+        }
+        localStorage.removeItem("attackCoords");
+        if (checkGameOver(player1, cpu)) return;
+        turn += 1;
+        renderBoard().renderTurn(turn)
+    }, 2000);
 };
 
 
