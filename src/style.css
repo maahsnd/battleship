@@ -19,3 +19,11 @@
 .ship {
     background-color: aqua;
 }
+
+.miss {
+    background-color: blueviolet;
+}
+
+div .hit {
+    background-color: red;
+}

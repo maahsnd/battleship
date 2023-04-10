@@ -29,13 +29,16 @@ const gameBoard = () => {
     shipStorage.push({ ship, coordinateArr });
   };
   const receiveAttack = (coordinates) => {
+    console.log(coordinates)
     for (let i = 0; i < shipStorage.length; i++) {
       let hitShip = compareCoordinates(shipStorage[i], coordinates);
       if (hitShip) {
-         hitShip.hits =  hitShip.hit()
+        hitShip.hits = hitShip.hit()
+        localStorage.setItem("hitOrMiss", "hit");
         return hitShip;
       }
     }
+    localStorage.setItem("hitOrMiss", "miss");
     missedAttacks.push(coordinates);
     return false;
   };

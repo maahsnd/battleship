@@ -59,6 +59,20 @@ const renderBoard = () => {
     let cell = document.querySelector(idStr);
     cell.classList.add('ship');
   }
+  const renderAttack = (coords, attackedPlayerStr) => {
+    let cell = document.querySelector(
+      `#${attackedPlayerStr}>div:nth-of-type(${coords[1]})>div:nth-of-type(${coords[0]})`
+    );
+    let hitOrMiss = localStorage.getItem("hitOrMiss");
+    console.log(hitOrMiss)
+    if (hitOrMiss === "hit") {
+      cell.classList.add('hit')
+      console.log(cell)
+    }
+    if (hitOrMiss === "miss") {
+      cell.classList.add('miss');
+    }
+  }
   const serveAttack = () => {
     round();
   }
@@ -79,7 +93,7 @@ const renderBoard = () => {
     let arr = str.split(',')
     return arr;
   }
-  return { createBoard, renderShips, addAttackListeners, getAllShipCoords, renderTurn };
+  return { createBoard, renderShips, addAttackListeners, getAllShipCoords, renderTurn, renderAttack };
 };
 
 export default renderBoard;

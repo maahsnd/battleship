@@ -8,7 +8,6 @@ let player1 = player();
 let cpu = player();
 player1.board.placeShip(2, [[2, 2], [2, 3]]);
 cpu.board.placeShip(2, [[5, 1], [5, 2]]);
-renderBoard().renderShips('cpuBoard', cpu); 
 renderBoard().renderShips('playerBoard', player1);  
 let turn = 0;
 renderBoard().addAttackListeners();
@@ -19,6 +18,7 @@ const round = () => {
     if (turn % 2 === 0) {
         player1.makeAttack(attack);
         cpu.board.receiveAttack(attack);
+        renderBoard().renderAttack(attack, 'cpuBoard');
     }
     localStorage.removeItem("attackCoords");
     if (checkGameOver(player1, cpu)) return;
@@ -27,8 +27,10 @@ const round = () => {
     setTimeout(() => {
         if (turn % 2 === 1) {
             cpu.makeRandomAttack();
-            player1.board.receiveAttack(JSON.parse(
-                localStorage.getItem("attackCoords")));
+            attack = JSON.parse(
+                localStorage.getItem("attackCoords"))
+            player1.board.receiveAttack(attack);
+            renderBoard().renderAttack(attack, 'playerBoard');
         }
         localStorage.removeItem("attackCoords");
         if (checkGameOver(player1, cpu)) return;
